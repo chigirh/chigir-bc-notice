@@ -3,7 +3,7 @@ package com.chigirh.bc.notice.web.controller
 import com.chigirh.bc.notice.application.usecase.GetDemoUseCase
 import com.chigirh.bc.notice.application.usecase.GetDemoUseCaseInput
 import com.chigirh.bc.notice.web.converter.DemoConverter
-import com.chigirh.bc.notice.web.entity.DemoResponse
+import com.chigirh.bc.notice.web.dto.DemoResponse
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller

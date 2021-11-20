@@ -1,4 +1,4 @@
-package com.chigirh.bc.notice.domain.model.demo
+package com.chigirh.bc.notice.domain.entity.demo
 
 /**
  * Demo model entity.

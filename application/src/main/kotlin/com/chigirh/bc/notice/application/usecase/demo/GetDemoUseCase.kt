@@ -1,7 +1,7 @@
 package com.chigirh.bc.notice.application.usecase
 
 import com.chigirh.bc.notice.application.repository.DemoRepository
-import com.chigirh.bc.notice.domain.model.demo.Demo
+import com.chigirh.bc.notice.domain.entity.demo.Demo
 
 /**
  * Demo class.

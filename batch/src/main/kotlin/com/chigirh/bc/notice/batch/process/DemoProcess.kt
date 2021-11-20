@@ -7,7 +7,7 @@ import com.chigirh.bc.notice.domain.entity.demo.Demo
 import mu.KotlinLogging
 import org.springframework.scheduling.annotation.Scheduled
 
-@Process
+//@Process
 class DemoProcess(
     val useCase: CreateDemoUseCase,
 ) {

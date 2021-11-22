@@ -2,11 +2,13 @@ package com.chigirh.bc.notice.application.usecase
 
 import com.chigirh.bc.notice.application.repository.DemoRepository
 import com.chigirh.bc.notice.domain.entity.demo.Demo
+import org.springframework.transaction.annotation.Transactional
 
 /**
  * Demo class.
  */
 @UseCase
+@Transactional
 class CreateDemoUseCase(
     val repository: DemoRepository,
 ) : UseCaseBase<CreateDemoUseCaseInput, CreateDemoUseCaseOutput>() {

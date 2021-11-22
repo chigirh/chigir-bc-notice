@@ -14,7 +14,7 @@ spring:
       password: secret
       driverClassName: com.mysql.jdbc.Driver
     reader:
-      url: jdbc:mysql://localhost:23306/bc-notice
+      url: jdbc:mysql://localhost:13306/bc-notice
       username: root
       password: secret
       driverClassName: com.mysql.jdbc.Driver

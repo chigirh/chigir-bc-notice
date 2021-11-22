@@ -11,9 +11,6 @@ import org.springframework.scheduling.annotation.Scheduled
 class DemoProcess(
     val useCase: CreateDemoUseCase,
 ) {
-
-    private val logger = KotlinLogging.logger { }
-
     @Scheduled(fixedRate = 10000)
     fun update() {
         logger.info { "Create demo process." }
@@ -25,5 +22,9 @@ class DemoProcess(
         )
         useCase(input)
 
+    }
+
+    companion object{
+        private val logger = KotlinLogging.logger { }
     }
 }

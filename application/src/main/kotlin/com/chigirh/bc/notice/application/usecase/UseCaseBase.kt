@@ -6,9 +6,6 @@ import mu.KotlinLogging
  * UseCase base class.
  */
 abstract class UseCaseBase<I : Input, O : Output> {
-
-    private val logger = KotlinLogging.logger {}
-
     protected fun doUseCase(input: I): O {
         logger.info { "Use case name:${input.getName()} start." }
         val output = useCase(input)
@@ -18,6 +15,10 @@ abstract class UseCaseBase<I : Input, O : Output> {
     }
 
     abstract fun useCase(input: I): O
+
+    companion object {
+        private val logger = KotlinLogging.logger {}
+    }
 }
 
 abstract class Input {

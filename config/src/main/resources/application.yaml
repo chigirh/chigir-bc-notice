@@ -1,2 +1,22 @@
 server:
   port: 9100
+
+mybatis:
+  mapper-locations: classpath*:/mybatis/sqls/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+spring:
+  datasource:
+    cluster:
+      url: jdbc:mysql://localhost:13306/bc-notice
+      username: root
+      password: secret
+      driverClassName: com.mysql.jdbc.Driver
+    reader:
+      url: jdbc:mysql://localhost:23306/bc-notice
+      username: root
+      password: secret
+      driverClassName: com.mysql.jdbc.Driver
+
+logging.level.org.springframework.jdbc: debug

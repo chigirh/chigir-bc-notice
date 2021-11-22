@@ -5,6 +5,6 @@ dependencies {
 	implementation("mysql:mysql-connector-java:8.0.21")
 
 	implementation(project(":common"))
-	implementation(project(":application"))
-	implementation(project(":domain"))
+//	implementation(project(":application"))
+//	implementation(project(":domain"))
 }

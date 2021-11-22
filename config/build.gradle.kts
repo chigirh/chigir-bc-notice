@@ -12,5 +12,6 @@ dependencies {
 	implementation(project(":batch"))
 	implementation(project(":application"))
 	implementation(project(":domain"))
+	implementation(project(":persistence"))
 	implementation(project(":infra:mysql"))
 }

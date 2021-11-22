@@ -48,6 +48,8 @@ subprojects {
 
         // log
         implementation("io.github.microutils:kotlin-logging:1.12.5")
+
+        // test
         testImplementation("org.springframework.boot:spring-boot-starter-test")
     }
 

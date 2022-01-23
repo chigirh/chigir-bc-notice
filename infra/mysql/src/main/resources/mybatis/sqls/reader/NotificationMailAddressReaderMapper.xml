@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chigirh.bc.notice.infra.mysql.mapper.reader.NotificationMailAddressReaderMapper">
+    <select id="findByDateTime"
+            resultType="com.chigirh.bc.notice.infra.mysql.dto.NotificationMailAddressEntity">
+        SELECT
+            `mail_address`,
+            `name`,
+            `begin_date`,
+            `end_date`
+        FROM  `notification_mail_address`
+        ORDER BY begin_date
+<!--        WHERE `begin_date` &lt;= #{dateTime} AND #{dateTime} &lt; `end_date`-->
+    </select>
+
+    <select id="findByKey"
+            resultType="com.chigirh.bc.notice.infra.mysql.dto.NotificationMailAddressEntity">
+        SELECT
+            `mail_address`,
+            `name`,
+            `begin_date`,
+            `end_date`
+        FROM  `notification_mail_address`
+        WHERE `mail_address` = #{key.mailAddress}
+        AND   `begin_date` = #{key.beginDate}
+    </select>
+
+    <select id="findByMailAddressAndDateTime"
+            resultType="com.chigirh.bc.notice.infra.mysql.dto.NotificationMailAddressEntity">
+        SELECT
+            `mail_address`,
+            `name`,
+            `begin_date`,
+            `end_date`
+        FROM  `notification_mail_address`
+        WHERE `mail_address` = #{mailAddress}
+        AND   `begin_date` &lt;= #{dateTime} AND #{dateTime} &lt; `end_date`
+    </select>
+
+    <select id="findByBeforeKey"
+            resultType="com.chigirh.bc.notice.infra.mysql.dto.NotificationMailAddressEntity">
+        SELECT
+            `mail_address`,
+            `name`,
+            `begin_date`,
+            `end_date`
+        FROM  `notification_mail_address`
+        WHERE `mail_address` = #{key.mailAddress}
+        AND   `begin_date` &lt; #{key.beginDate}
+        ORDER BY `begin_date` DESC
+        LIMIT 1
+    </select>
+
+    <select id="findByAfterKey"
+            resultType="com.chigirh.bc.notice.infra.mysql.dto.NotificationMailAddressEntity">
+        SELECT
+            `mail_address`,
+            `name`,
+            `begin_date`,
+            `end_date`
+        FROM  `notification_mail_address`
+        WHERE `mail_address` = #{key.mailAddress}
+        AND   #{key.beginDate} &lt; `begin_date`
+        ORDER BY `begin_date` ASC
+        LIMIT 1
+    </select>
+</mapper>

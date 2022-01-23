@@ -1,6 +1,6 @@
 package com.chigirh.bc.notice.repository
 
-import com.chigirh.bc.notice.application.repository.DemoRepository
+import com.chigirh.bc.notice.application.repository.demo.DemoRepository
 import com.chigirh.bc.notice.domain.entity.demo.Demo
 import com.chigirh.bc.notice.infra.mysql.dto.DemoEntity
 import com.chigirh.bc.notice.infra.mysql.mapper.cluster.DemoClusterMapper

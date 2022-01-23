@@ -1,6 +1,6 @@
 package com.chigirh.bc.notice.application.usecase.demo
 
-import com.chigirh.bc.notice.application.repository.DemoRepository
+import com.chigirh.bc.notice.application.repository.demo.DemoRepository
 import com.chigirh.bc.notice.application.usecase.Input
 import com.chigirh.bc.notice.application.usecase.Output
 import com.chigirh.bc.notice.application.usecase.UseCase

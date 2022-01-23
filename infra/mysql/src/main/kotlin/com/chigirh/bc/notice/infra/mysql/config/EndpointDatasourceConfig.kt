@@ -18,7 +18,7 @@ import javax.sql.DataSource
 // Datasource for write.
 @Configuration
 @MapperScan(
-    basePackages = ["com.chigirh.bc.notice.infra.mysql.mapper.cluster"],
+    basePackages = ["com.chigirh.bc.notice.infra.mysql.mapper"],
     sqlSessionFactoryRef = ClusterDatasourceConstant.SESSION_FACTORY
 )
 class ClusterEndpointDatasourceConfig {
@@ -57,11 +57,11 @@ class ClusterEndpointDatasourceConfig {
 }
 
 // Datasource for read only.
-@Configuration
-@MapperScan(
-    basePackages = ["com.chigirh.bc.notice.infra.mysql.mapper.reader"],
-    sqlSessionFactoryRef = ReaderDatasourceConstant.SESSION_FACTORY
-)
+//@Configuration
+//@MapperScan(
+//    basePackages = ["com.chigirh.bc.notice.infra.mysql.mapper.reader"],
+//    sqlSessionFactoryRef = ReaderDatasourceConstant.SESSION_FACTORY
+//)
 class ReaderEndpointDatasourceConfig {
     @ConfigurationProperties("spring.datasource.reader")
     @Bean(name = [ReaderDatasourceConstant.PROPERTIES])

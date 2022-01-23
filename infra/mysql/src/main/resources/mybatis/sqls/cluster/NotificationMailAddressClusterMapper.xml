@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chigirh.bc.notice.infra.mysql.mapper.cluster.NotificationMailAddressClusterMapper">
+    <insert id="insert">
+        INSERT INTO `notification_mail_address` (
+            `mail_address`,
+            `name`,
+            `begin_date`,
+            `end_date`
+        ) values
+        <foreach item="entity" separator="," collection="entities">
+            (
+                #{entity.mailAddress},
+                #{entity.name},
+                #{entity.beginDate},
+                #{entity.endDate}
+            )
+        </foreach>
+    </insert>
+
+    <update id="updateByKey">
+        UPDATE `notification_mail_address`
+        SET
+            `name` = #{entity.name},
+            `end_date` = #{entity.endDate}
+        WHERE `mail_address` = #{entity.mailAddress}
+        AND   `begin_date` = #{entity.beginDate}
+    </update>
+
+    <delete id="deleteByKey">
+        DELETE
+        FROM `notification_mail_address`
+        WHERE `mail_address` = #{key.mailAddress}
+        AND   `begin_date` = #{key.beginDate}
+    </delete>
+</mapper>

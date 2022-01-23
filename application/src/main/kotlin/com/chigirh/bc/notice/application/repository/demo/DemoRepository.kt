@@ -1,4 +1,4 @@
-package com.chigirh.bc.notice.application.repository
+package com.chigirh.bc.notice.application.repository.demo
 
 import com.chigirh.bc.notice.domain.entity.demo.Demo
 

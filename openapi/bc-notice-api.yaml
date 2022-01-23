@@ -1,0 +1,201 @@
+openapi: 3.0.0
+info:
+  title: bc-notice-api
+  version: '1.0'
+servers:
+  - url: 'http://localhost:9100'
+paths:
+  /mail:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: ''
+                  total:
+                    type: integer
+                required:
+                  - total
+      operationId: get-api-bc-main
+      description: Get the delivery email address.
+      parameters:
+        - schema:
+            type: string
+            default: no settings
+          in: header
+          name: x-user-id
+          required: true
+        - schema:
+            type: string
+            default: no settings
+          in: header
+          name: x-session-id
+          required: true
+        - schema:
+            type: integer
+          in: query
+          name: offset
+          required: true
+        - schema:
+            type: integer
+            default: 5
+          in: query
+          name: limit
+          required: true
+    parameters: []
+    post:
+      summary: ''
+      operationId: post-api-bc-main
+      responses:
+        '200':
+          description: OK
+      description: Register the delivery email address.
+      parameters:
+        - schema:
+            type: string
+            default: no settings
+          in: header
+          name: x-user-id
+          required: true
+        - schema:
+            type: string
+            default: no settings
+          in: header
+          name: x-session-id
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                notificationMainAddress:
+                  $ref: '#/components/schemas/NotificationMailAddress'
+              required:
+                - notificationMainAddress
+    delete:
+      summary: ''
+      operationId: delete-api-bc-main
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      description: Delete the delivery email address.
+      parameters:
+        - schema:
+            type: string
+            default: no settings
+          in: header
+          name: x-user-id
+          required: true
+        - schema:
+            type: string
+            default: no settings
+          in: header
+          name: x-session-id
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationMailAddress'
+  '/demo/{key}':
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Demo'
+        '404':
+          description: Not Found
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      operationId: get-api-bc-sample
+    parameters:
+      - schema:
+          type: string
+        name: key
+        in: path
+        required: true
+components:
+  schemas:
+    NotificationMailAddress:
+      title: NotificationMailAddress
+      type: object
+      properties:
+        mail_address:
+          type: string
+          maxLength: 300
+        name:
+          type: string
+          maxLength: 300
+        expiration_date:
+          type: string
+          description: 'Date time as "yyyy-MM-dd hh:mm:ss"'
+        effective_date:
+          type: string
+          description: 'Date time as "yyyy-MM-dd hh:mm:ss"'
+      required:
+        - mail_address
+        - name
+        - expiration_date
+        - effective_date
+    ErrorDetail:
+      title: ErrorDetail
+      type: object
+      properties:
+        error_code:
+          type: string
+        message:
+          type: string
+      required:
+        - error_code
+        - message
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      x-examples:
+        example-1:
+          error_details:
+            - error_code: string
+              message: string
+      properties:
+        error_details:
+          type: array
+          description: |-
+            01040:Application error.
+            01041:Key does not exis.
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+    Demo:
+      title: Demo
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      required:
+        - key
+  securitySchemes: {}

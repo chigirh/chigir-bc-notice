@@ -7,8 +7,10 @@ plugins {
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     kotlin("jvm") version "1.6.0"
     kotlin("plugin.spring") version "1.6.0"
+    // swagger
+    id("org.openapi.generator") version "5.3.0" apply false
+    id("org.hidetake.swagger.generator") version "2.18.2" apply false
 }
-
 
 allprojects {
     repositories {

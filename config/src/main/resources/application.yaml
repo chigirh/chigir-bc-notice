@@ -6,7 +6,13 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
 
+
 spring:
+  message:
+    basename: messages
+    cache-seconds: -1
+    encoding: UTF-8
+
   datasource:
     cluster:
       url: jdbc:mysql://localhost:13306/bc-notice

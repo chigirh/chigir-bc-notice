@@ -6,13 +6,17 @@ import mu.KotlinLogging
  * UseCase base class.
  */
 abstract class UseCaseBase<I : Input, O : Output> {
-    protected fun doUseCase(input: I): O {
+    operator fun invoke(input: I): O {
         logger.info { "Use case name:${input.getName()} start." }
-        val output = useCase(input)
-        logger.info { "Use case name:${input.getName()} end." }
-
-        return output
+        try {
+            inputModification(input)
+            return useCase(input)
+        } finally {
+            logger.info { "Use case name:${input.getName()} end." }
+        }
     }
+
+    open fun inputModification(input: I) {}
 
     abstract fun useCase(input: I): O
 

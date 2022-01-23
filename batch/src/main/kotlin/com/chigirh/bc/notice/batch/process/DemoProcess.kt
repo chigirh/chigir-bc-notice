@@ -1,7 +1,7 @@
 package com.chigirh.bc.notice.batch.process
 
-import com.chigirh.bc.notice.application.usecase.CreateDemoUseCase
-import com.chigirh.bc.notice.application.usecase.CreateDemoUseCaseInput
+import com.chigirh.bc.notice.application.usecase.demo.CreateDemoUseCase
+import com.chigirh.bc.notice.application.usecase.demo.CreateDemoUseCaseInput
 import com.chigirh.bc.notice.common.util.DateUtil
 import com.chigirh.bc.notice.domain.entity.demo.Demo
 import mu.KotlinLogging

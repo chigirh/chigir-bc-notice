@@ -1,7 +1,12 @@
-package com.chigirh.bc.notice.application.usecase
+package com.chigirh.bc.notice.application.usecase.demo
 
 import com.chigirh.bc.notice.application.repository.DemoRepository
+import com.chigirh.bc.notice.application.usecase.Input
+import com.chigirh.bc.notice.application.usecase.Output
+import com.chigirh.bc.notice.application.usecase.UseCase
+import com.chigirh.bc.notice.application.usecase.UseCaseBase
 import com.chigirh.bc.notice.domain.entity.demo.Demo
+import com.chigirh.bc.notice.domain.exception.business.NotFoundException
 
 /**
  * Demo class.
@@ -10,11 +15,8 @@ import com.chigirh.bc.notice.domain.entity.demo.Demo
 class GetDemoUseCase(
     val repository: DemoRepository,
 ) : UseCaseBase<GetDemoUseCaseInput, GetDemoUseCaseOutput>() {
-
-    operator fun invoke(input: GetDemoUseCaseInput) = doUseCase(input)
-
     override fun useCase(input: GetDemoUseCaseInput): GetDemoUseCaseOutput {
-        val demo = repository.fetchByKey(input.key)
+        val demo = repository.fetchByKey(input.key) ?: throw NotFoundException(resources = input.key)
         return GetDemoUseCaseOutput(demo)
     }
 }
@@ -26,5 +28,5 @@ data class GetDemoUseCaseInput(
 }
 
 data class GetDemoUseCaseOutput(
-    val demo: Demo?,
+    val demo: Demo,
 ) : Output()

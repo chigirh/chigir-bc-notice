@@ -10,6 +10,7 @@ import com.chigirh.bc.notice.application.usecase.UseCase
 import com.chigirh.bc.notice.application.usecase.UseCaseBase
 import com.chigirh.bc.notice.common.util.DateUtil
 import com.chigirh.bc.notice.domain.entity.bitbank.Pair
+import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import mu.KotlinLogging
 import org.springframework.transaction.annotation.Transactional
@@ -39,19 +40,21 @@ class BitCoinNoticeUseCase(
         logger.info { "currentSell:$sell" }
         logger.info { "diff:$diffSell" }
 
-        if (diffSell < -100 || 100 < diffSell) {
+        if (diffSell < -5000 || 5000 < diffSell) {
             val title = "Current selling price, $sell($diffSell)"
 
             val mails = notificationMailRepository.fetchByDate(DateUtil.currentDate())
             // sending emails async
             runBlocking {
-                mails.forEach { mailSendRepository.send(title, "", it) }
+                mails.forEach {
+                    async { mailSendRepository.send(title, "", it) }
+                }
             }
         }
 
         beforeTickerManagementService.create(ticker)
 
-        return BitCoinNoticeOutput();
+        return BitCoinNoticeOutput()
     }
 
     companion object {

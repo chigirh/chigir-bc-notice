@@ -32,7 +32,7 @@ spring:
     username: chigirh@gmail.com
     # Application Password.
     # SEE:https://support.google.com/accounts/answer/185833?hl=ja
-    password: uqghuxevrrcvbjlf
+    password: #note:アプリケーションキー
     properties.mail.smtp.auth: true
     properties.mail.smtp.starttls.enable: true
     properties.mail.smtp.ssl.trust: smtp.gmail.com

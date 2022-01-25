@@ -38,3 +38,5 @@ out/
 
 /docker/mysql/data
 /docker/testing-mysql/data
+
+key.txt

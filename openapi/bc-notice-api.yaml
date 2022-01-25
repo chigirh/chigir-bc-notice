@@ -152,10 +152,10 @@ components:
           maxLength: 300
         expiration_date:
           type: string
-          description: 'Date time as "yyyy-MM-dd hh:mm:ss"'
+          description: 'Date as "yyyyMMdd"'
         effective_date:
           type: string
-          description: 'Date time as "yyyy-MM-dd hh:mm:ss"'
+          description: 'Date as "yyyyMMdd"'
       required:
         - mail_address
         - name

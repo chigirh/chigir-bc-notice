@@ -12,16 +12,14 @@ import org.springframework.stereotype.Repository
 class MailSendRepositoryImpl(
     private val gMailSendClient: GMailSendClient,
 ) : MailSendRepository {
-    override suspend fun send(
+    override fun send(
         title: String,
         message: String,
         model: NotificationMail,
-    ) {
-        gMailSendClient.send(
-            title = title,
-            message = message,
-            to = model.mailAddress,
-            name = model.name,
-        )
-    }
+    ) = gMailSendClient.send(
+        title = title,
+        message = message,
+        to = model.mailAddress,
+        name = model.name,
+    )
 }

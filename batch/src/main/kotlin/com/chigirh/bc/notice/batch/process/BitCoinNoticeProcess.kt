@@ -5,7 +5,7 @@ import com.chigirh.bc.notice.application.usecase.mail.BitCoinNoticeUseCase
 import mu.KotlinLogging
 import org.springframework.scheduling.annotation.Scheduled
 
-//@Process
+@Process
 class BitCoinNoticeProcess(
     val useCase: BitCoinNoticeUseCase,
 ) {

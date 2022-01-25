@@ -1,15 +1,16 @@
 package com.chigirh.bc.notice.repository
 
-import com.chigirh.bc.notice.application.repository.NotificationMailRepository
-import com.chigirh.bc.notice.domain.entity.demo.NotificationMail
+import com.chigirh.bc.notice.application.repository.mail.NotificationMailRepository
+import com.chigirh.bc.notice.common.util.DateUtil.toDateTime
+import com.chigirh.bc.notice.domain.entity.mail.NotificationMail
 import com.chigirh.bc.notice.infra.mysql.dto.NotificationMailAddressEntity
 import com.chigirh.bc.notice.infra.mysql.mapper.cluster.NotificationMailAddressClusterMapper
 import com.chigirh.bc.notice.infra.mysql.mapper.reader.NotificationMailAddressReaderMapper
 import org.springframework.stereotype.Repository
-import java.time.LocalDateTime
+import java.time.LocalDate
 
 /**
- * com.chigirh.bc.notice.domain.entity.demo.NotificationMail repository impl.
+ * com.chigirh.bc.notice.domain.entity.mail.NotificationMail repository impl.
  */
 @Repository
 class NotificationMailRepositoryImpl(
@@ -35,12 +36,8 @@ class NotificationMailRepositoryImpl(
         val entity = NotificationMailAddressEntity(
             mailAddress = model.mailAddress,
             name = model.name,
-            beginDate = model.effectiveDate.let {
-                LocalDateTime.of(it.year, it.month, it.dayOfMonth, 0, 0)
-            },
-            endDate = model.expirationDate.let {
-                LocalDateTime.of(it.year, it.month, it.dayOfMonth, 0, 0)
-            },
+            beginDate = model.effectiveDate.toDateTime(),
+            endDate = model.expirationDate.toDateTime(),
         )
 
         val key = NotificationMailAddressEntity.Key(
@@ -79,6 +76,11 @@ class NotificationMailRepositoryImpl(
 
     }
 
+    override fun fetchByDate(date: LocalDate) =
+        notificationMailAddressReaderMapper.findByDateTime(dateTime = date.toDateTime())
+            .map { it.toModel() }
+            .toList()
+
     private fun updateExpirationDateTheAfterData(entity: NotificationMailAddressEntity) {
         val validEntity = notificationMailAddressReaderMapper.findByMailAddressAndDateTime(
             mailAddress = entity.mailAddress,
@@ -97,4 +99,11 @@ class NotificationMailRepositoryImpl(
             ))
         notificationMailAddressClusterMapper.insert(listOf(afterEntity))
     }
+
+    fun NotificationMailAddressEntity.toModel() = NotificationMail(
+        mailAddress = mailAddress,
+        name = name,
+        effectiveDate = beginDate.toLocalDate(),
+        expirationDate = endDate.toLocalDate(),
+    )
 }

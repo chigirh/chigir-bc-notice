@@ -14,4 +14,6 @@ dependencies {
 	implementation(project(":domain"))
 	implementation(project(":persistence"))
 	implementation(project(":infra:mysql"))
+	implementation(project(":infra:api"))
+	implementation(project(":infra:mail"))
 }

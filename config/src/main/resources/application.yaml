@@ -25,4 +25,16 @@ spring:
       password: secret
       driverClassName: com.mysql.jdbc.Driver
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    # Your Email Address.
+    username: chigirh@gmail.com
+    # Application Password.
+    # SEE:https://support.google.com/accounts/answer/185833?hl=ja
+    password: uqghuxevrrcvbjlf
+    properties.mail.smtp.auth: true
+    properties.mail.smtp.starttls.enable: true
+    properties.mail.smtp.ssl.trust: smtp.gmail.com
+
 logging.level.org.springframework.jdbc: debug

@@ -1,6 +1,6 @@
 package com.chigirh.bc.notice.web.converter
 
-import com.chigirh.bc.notice.domain.entity.demo.NotificationMail
+import com.chigirh.bc.notice.domain.entity.mail.NotificationMail
 import com.chigirh.bc.notice.web.oas3.model.NotificationMailAddressDto
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter

@@ -1,4 +1,4 @@
-package com.chigirh.bc.notice.domain.entity.demo
+package com.chigirh.bc.notice.domain.entity.mail
 
 import java.time.LocalDate
 

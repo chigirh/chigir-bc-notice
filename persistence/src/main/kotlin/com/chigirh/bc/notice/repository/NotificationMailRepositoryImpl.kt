@@ -81,6 +81,15 @@ class NotificationMailRepositoryImpl(
             .map { it.toModel() }
             .toList()
 
+    override fun delete(model: NotificationMail) {
+        val key = NotificationMailAddressEntity.Key(
+            mailAddress = model.mailAddress,
+            beginDate = model.effectiveDate.toDateTime(),
+        )
+
+        notificationMailAddressClusterMapper.deleteByKey(key)
+    }
+
     private fun updateExpirationDateTheAfterData(entity: NotificationMailAddressEntity) {
         val validEntity = notificationMailAddressReaderMapper.findByMailAddressAndDateTime(
             mailAddress = entity.mailAddress,

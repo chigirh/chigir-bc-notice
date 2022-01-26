@@ -10,4 +10,6 @@ interface NotificationMailRepository {
     fun create(model: NotificationMail)
 
     fun fetchByDate(date: LocalDate): List<NotificationMail>
+
+    fun delete(model: NotificationMail)
 }
